@@ -73,7 +73,7 @@ public class GlobalConfig {
 
 	private void fillDataByProperties(Properties configProperties) {
 
-		inputPath = configProperties.getProperty("intputPath", inputPath);
+		inputPath = configProperties.getProperty("inputPath", inputPath);
 		outputPath = configProperties.getProperty("outputPath", outputPath);
 		targetEncoding = configProperties.getProperty("targetEncoding", targetEncoding);
 		String extensionsStr = configProperties.getProperty("extensions", StringUtil.join(",", extensions));

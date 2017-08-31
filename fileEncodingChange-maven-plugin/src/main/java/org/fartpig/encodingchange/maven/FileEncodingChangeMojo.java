@@ -13,6 +13,7 @@ import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProject;
 import org.apache.maven.project.MavenProjectHelper;
+import org.fartpig.encodingchange.App;
 import org.fartpig.encodingchange.constant.GlobalConfig;
 import org.fartpig.encodingchange.maven.util.Constants;
 import org.fartpig.encodingchange.maven.util.StringUtils;
@@ -41,6 +42,8 @@ public class FileEncodingChangeMojo extends AbstractMojo {
 			if (!StringUtils.isEmpty(local)) {
 				globalConfig.setLocal(local);
 			}
+
+			App.invokeByGlobalConfig(globalConfig);
 
 			getLog().info(Constants.PLUGIN_ID + " - convert - end");
 
