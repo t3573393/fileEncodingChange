@@ -18,21 +18,21 @@ public class EncodingDetectAction {
 		ToolLogger.getInstance().setCurrentPhase(CURRENT_PHASE);
 	}
 
-	public Map<String, String> detectFiles(String inputPath, String[] extensions) {
+	public Map<String, String> detectFiles(String inputPath, String[] extensions, String targetEncoding) {
 		Map<String, String> fileEncodings = new HashMap<String, String>();
 
 		File file = new File(inputPath);
 		if (file.isDirectory()) {
 			Collection<File> allFiles = FileUtils.listFiles(file, extensions, true);
 			for (File aFile : allFiles) {
-				String encoding = CharacterSetUtil.detectFile(aFile);
+				String encoding = CharacterSetUtil.detectFile(aFile, targetEncoding);
 				if (encoding != null) {
 					fileEncodings.put(aFile.getAbsolutePath(), encoding);
 					ToolLogger.getInstance().warning("file:" + aFile.getAbsolutePath() + " - encoding:" + encoding);
 				}
 			}
 		} else {
-			String encoding = CharacterSetUtil.detectFile(file);
+			String encoding = CharacterSetUtil.detectFile(file, targetEncoding);
 			if (encoding != null) {
 				fileEncodings.put(file.getAbsolutePath(), encoding);
 				ToolLogger.getInstance().warning("file:" + file.getAbsolutePath() + " - encoding:" + encoding);

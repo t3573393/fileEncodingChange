@@ -55,4 +55,10 @@ example:
 					<inputPath>***</inputPath>
 					<targetEncoding>UTF-8</targetEncoding>
 				</configuration>
-			</plugin>
+			</plugin>  
+
+#detect encoding method:   
+
+commonCharDector : try use the common char to detect the encoding   
+NsDector : jchardet lib
+Universalchardet  : juniversalchardet lib

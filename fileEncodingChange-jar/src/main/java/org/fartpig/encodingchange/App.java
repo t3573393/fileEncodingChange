@@ -133,6 +133,11 @@ public class App {
 
 		// add dir suffix
 		File inputFile = new File(inputPath);
+		if (!inputFile.exists()) {
+			ToolLogger.getInstance().error("error: input file not found - " + inputPath);
+			return;
+		}
+
 		File outputFile = new File(outputPath);
 		if (inputFile.isDirectory() && inputPath.charAt(inputPath.length() - 1) != File.separatorChar) {
 			inputPath = inputPath + File.separator;
@@ -146,7 +151,7 @@ public class App {
 
 		// detact file encoding
 		EncodingDetectAction encodingDetact = new EncodingDetectAction();
-		Map<String, String> fileEncodings = encodingDetact.detectFiles(inputPath, extensions);
+		Map<String, String> fileEncodings = encodingDetact.detectFiles(inputPath, extensions, targetEncoding);
 
 		// clear the bom header
 		if (needClearBOM) {

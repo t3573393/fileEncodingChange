@@ -13,6 +13,7 @@ import org.mozilla.universalchardet.UniversalDetector;
 public class CharacterSetUtil {
 
 	private static String[] GBSets = { "GB18030", "GB2312", "GBK" };
+	private static CommonCharDector commonCharDector = null;
 
 	public static boolean isUnionSet(String srcCharset, String targetCharset) {
 		if (srcCharset.equalsIgnoreCase(targetCharset)) {
@@ -41,10 +42,21 @@ public class CharacterSetUtil {
 
 	}
 
-	public static String detectFile(File aFile) {
+	public static String detectFile(File aFile, String targetEncoding) {
 		String encodingA = detectFileWithNsDector(aFile);
 		String encodingB = detectFileWithUniversalchardet(aFile);
+		if (commonCharDector == null) {
+			commonCharDector = new CommonCharDector();
+			commonCharDector.loadCommonChars();
+		}
 		// TODO 增加新的库，提高识别率
+
+		// high priority
+		if (commonCharDector.detactEncoding(aFile, targetEncoding)) {
+			ToolLogger.getInstance()
+					.warning("commonCharDector: file:--" + aFile.getAbsolutePath() + " - encoding:" + targetEncoding);
+			return targetEncoding;
+		}
 
 		// choose the valid one
 		if (encodingA == null) {

@@ -82,7 +82,7 @@ public class ConvertEncodingAction {
 			}
 
 			// verify the temp file
-			String encoding = CharacterSetUtil.detectFile(new File(tempOutputPath));
+			String encoding = CharacterSetUtil.detectFile(new File(tempOutputPath), targetEncoding);
 			ToolLogger.getInstance().info("change result encoding:" + encoding);
 			// use the super set model
 			if (encoding != null && CharacterSetUtil.isCharacterContain(encoding, targetEncoding)) {

@@ -35,6 +35,10 @@ public final class ToolLogger {
 		log.debug(String.format("phase:%s-%s", currentPhase, msg));
 	}
 
+	public void error(String msg) {
+		log.error(String.format("phase:%s-%s", currentPhase, msg));
+	}
+
 	public void error(String msg, Throwable t) {
 		log.error(String.format("phase:%s-%s", currentPhase, msg), t);
 	}
