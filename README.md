@@ -57,8 +57,8 @@ example:
 				</configuration>
 			</plugin>  
 
-#detect encoding method:   
+# detect encoding method:   
 
-commonCharDector : try use the common char to detect the encoding   
-NsDector : jchardet lib
-Universalchardet  : juniversalchardet lib
+commonCharDector : try use the common char to detect the encoding    
+NsDector : jchardet lib  
+Universalchardet  : juniversalchardet lib  
